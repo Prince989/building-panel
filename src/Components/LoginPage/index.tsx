@@ -3,10 +3,8 @@ import LoginStyle from "./index.module.css"
 import { Button, InputAdornment, Snackbar, TextField } from '@mui/material'
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import LockOpenOutlinedIcon from '@mui/icons-material/LockOpenOutlined';
-import { authenticate } from '../../Services/Authenticate';
 import { useNavigate } from 'react-router';
 import { useSnackbar } from 'notistack';
-import UserPool from '../../Services/UserPool';
 
 export default function LoginPage() {
 
@@ -15,14 +13,14 @@ export default function LoginPage() {
     const { enqueueSnackbar } = useSnackbar();
 
     const navigate = useNavigate();
-
+/* 
     useEffect(() => {
         if(UserPool.getCurrentUser()){
             navigate("/");
         }
     },[])
-
-    const signIn = () => {
+ */
+/*     const signIn = () => {
         authenticate(email, password).then(res => {
             navigate("/");
         })
@@ -35,7 +33,7 @@ export default function LoginPage() {
                     variant : "error"
                 });
             })
-    }
+    } */
 
 
     return (
@@ -47,7 +45,7 @@ export default function LoginPage() {
                 <div className='p-5'>
                     <form onSubmit={(e) => {
                         e.preventDefault();
-                        signIn();
+                        // signIn();
                     }}>
                         <TextField
                             id="input-with-icon-textfield"

@@ -8,17 +8,16 @@ import { BrowserRouter, Router } from 'react-router-dom';
 import { Route, Routes } from 'react-router';
 import LoginPage from './Components/LoginPage';
 import { Navigate, Outlet } from "react-router-dom";
-import UserPool from './Services/UserPool';
 import { SnackbarProvider } from 'notistack';
 import Contactor from './pages/contactor';
 import Suppliers from './pages/suppliers';
-
+/* 
 const PrivateRoute = () => {
   const user = UserPool.getCurrentUser()
   if (!user) return <Navigate to="/login" />;
   return <Outlet />;
 };
-
+ */
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );

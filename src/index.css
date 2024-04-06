@@ -1,0 +1,66 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@font-face {
+  font-family: "roboto";
+  src: url(../public/fonts/YekanBakh-Black.woff);
+  font-weight: 900;
+}
+@font-face {
+  font-family: "roboto";
+  src: url(../public/fonts/YekanBakh-ExtraBold.woff);
+  font-weight: 800;
+}
+@font-face {
+  font-family: "roboto";
+  src: url(../public/fonts/YekanBakh-Bold.woff);
+  font-weight: 700;
+}
+@font-face {
+  font-family: "roboto";
+  src: url(../public/fonts/YekanBakh-SemiBold.woff);
+  font-weight: 600;
+}
+@font-face {
+  font-family: "roboto";
+  src: url(../public/fonts/YekanBakh-Regular.woff);
+  font-weight: 400;
+}
+@font-face {
+  font-family: "roboto";
+  src: url(../public/fonts/YekanBakh-Light.woff);
+  font-weight: 300;
+}
+
+body {
+  margin: 0;
+  font-family: roboto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+table{
+  width: 100%;
+  color : #555
+}
+
+td{
+  border-style: solid;
+  border-width: 1px;
+  text-align: center;
+  padding: 10px;
+}
+
+th{
+  padding: 10px;
+  border-style: solid;
+  border-width: 1px;
+  text-align: center;
+}

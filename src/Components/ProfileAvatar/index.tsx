@@ -2,7 +2,7 @@ import ExpandMoreRoundedIcon from '@mui/icons-material/ExpandMoreRounded';
 import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
 import { Avatar, ListItemIcon, Menu, MenuItem } from '@mui/material'
 import React from 'react'
-import { logout } from '../../Services/Authenticate';
+// import { logout } from '../../Services/Authenticate';
 
 export default function ProfileAvatar() {
 
@@ -13,7 +13,7 @@ export default function ProfileAvatar() {
     };
 
     const handleLogout = () => {
-        logout();
+        // logout();
     }
 
     const handleClose = () => {

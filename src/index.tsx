@@ -11,21 +11,30 @@ import { Navigate, Outlet } from "react-router-dom";
 import { SnackbarProvider } from 'notistack';
 import Contactor from './pages/contactor';
 import Suppliers from './pages/suppliers';
-/* 
+import { store } from './lib/store';
+import SignUp from './pages/sign-up';
+import { Provider } from 'react-redux';
+import Projects from './pages/projects';
+import AuthProvider, { useAuth } from './AuthContext';
+import Login from './pages/login';
+
 const PrivateRoute = () => {
-  const user = UserPool.getCurrentUser()
-  if (!user) return <Navigate to="/login" />;
+  const user = useAuth();
+  if (!user.token) return <Navigate to="/auth/login" />;
   return <Outlet />;
 };
- */
+
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
 const theme = createTheme({
+  typography: {
+    fontFamily: "roboto"
+  },
   palette: {
     primary: {
-      main: "#ff5b8d"
+      main: "#140092"
     },
     secondary: {
       main: "#4e3350",
@@ -36,18 +45,26 @@ const theme = createTheme({
 
 root.render(
   <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      <SnackbarProvider maxSnack={3}>
-        <BrowserRouter>
-          <Routes>
-            <Route path='/contactors' element={<Contactor />} />
-            <Route path='/suppliers' element={<Suppliers />} />
-            <Route path='/' element={<App />} />
-            <Route path='/login' element={<LoginPage />} />
-          </Routes >
-        </BrowserRouter>
-      </SnackbarProvider>
-    </ThemeProvider>
+    <Provider store={store}>
+      <ThemeProvider theme={theme}>
+        <SnackbarProvider maxSnack={3}>
+          <BrowserRouter>
+            <AuthProvider>
+              <Routes>
+                <Route path='/auth/sign-up' element={<SignUp />} />
+                <Route path='/contactors' element={<Contactor />} />
+                <Route path='/projects' element={<Projects />} />
+                <Route path='/suppliers' element={<Suppliers />} />
+                <Route element={<PrivateRoute />}>
+                  <Route path='/dashboard' element={<App />} />
+                </Route>
+                <Route path='auth/login' element={<Login />} />
+              </Routes >
+            </AuthProvider>
+          </BrowserRouter>
+        </SnackbarProvider>
+      </ThemeProvider>
+    </Provider>
   </React.StrictMode >
 );
 

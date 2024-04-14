@@ -25,6 +25,11 @@
 }
 @font-face {
   font-family: "roboto";
+  src: url(../public/fonts/YekanBakh-Medium.woff);
+  font-weight: 500;
+}
+@font-face {
+  font-family: "roboto";
   src: url(../public/fonts/YekanBakh-Regular.woff);
   font-weight: 400;
 }

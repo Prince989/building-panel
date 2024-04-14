@@ -1,50 +1,37 @@
-import ExpandMoreRoundedIcon from '@mui/icons-material/ExpandMoreRounded';
-import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
 import { Avatar, ListItemIcon, Menu, MenuItem } from '@mui/material'
 import React from 'react'
-// import { logout } from '../../Services/Authenticate';
+import { useAuth } from '../../AuthContext'
+import { IUser } from '../../types';
+import httpClient from '../../API';
 
 export default function ProfileAvatar() {
 
-    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-    const open = Boolean(anchorEl);
-    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-        setAnchorEl(event.currentTarget);
-    };
+    const [user, setUser] = React.useState<IUser>();
 
-    const handleLogout = () => {
-        // logout();
-    }
-
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
+    React.useEffect(() => {
+        httpClient.get("/api/user/profile").then(res => {
+            setUser(res.data.data);
+        })
+    }, [])
 
     return (
-        <>
-            <Menu
-                id="basic-menu"
-                anchorEl={anchorEl}
-                open={open}
-                onClose={handleClose}
-                MenuListProps={{
-                    'aria-labelledby': 'basic-button',
-                }}
-            >
-                <MenuItem onClick={handleLogout}>
-                    <ListItemIcon>
-                        <LogoutRoundedIcon fontSize="small" />
-                    </ListItemIcon>
-                    Logout
-                </MenuItem>
-            </Menu>
+        <div className='flex items-center gap-[16px] justify-center'>
+            <div className='text-end'>
+                <h1 className="text-primary font-bold">
+                    {
+                        user?.name
+                    }
+                </h1>
+                <h2 className='text-[#000000A3] text-[14px]'>
+                    کارفرما
+                </h2>
+            </div>
 
-            <button onClick={handleClick} className='flex items-center focus:outline-none'>
-                <ExpandMoreRoundedIcon sx={{ color: "white" }} />
-                <Avatar alt="Admin">
-                    A
-                </Avatar>
-            </button>
-        </>
+            <Avatar alt="Admin" src={user?.image}>
+                {
+                    user?.name.slice(0, 1)
+                }
+            </Avatar>
+        </div>
     )
 }

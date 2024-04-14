@@ -17,6 +17,7 @@ import { Provider } from 'react-redux';
 import Projects from './pages/projects';
 import AuthProvider, { useAuth } from './AuthContext';
 import Login from './pages/login';
+import HomePage from './pages/home';
 
 const PrivateRoute = () => {
   const user = useAuth();
@@ -51,6 +52,7 @@ root.render(
           <BrowserRouter>
             <AuthProvider>
               <Routes>
+                <Route path='/' element={<HomePage />} />
                 <Route path='/auth/sign-up' element={<SignUp />} />
                 <Route path='/contactors' element={<Contactor />} />
                 <Route path='/projects' element={<Projects />} />

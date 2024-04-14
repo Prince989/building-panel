@@ -15,6 +15,9 @@ export interface IProject{
     residentalUnitCount : string
     businessUnitCount : string
     projectDesc : string
+    isActive : boolean
+    projectStart : string
+    projectEnd : string
 }
 
 export interface IUser {

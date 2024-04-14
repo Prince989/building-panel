@@ -2,11 +2,12 @@ import { useContext, createContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { IUser } from "../types";
 import httpClient from "../API";
+import axios from "axios";
 
 interface IAuthHook {
   user: IUser | null,
   token: string,
-  loginAction: (data: { phoneNumber: string, verificationCode: string, callback: () => void }) => void,
+  loginAction: (data: { phoneNumber: string, verificationCode: string, callback: (token : string) => void }) => void,
   logOut: () => void
 }
 
@@ -15,10 +16,9 @@ const AuthContext = createContext<IAuthHook>({ user: null, token: "", loginActio
 const AuthProvider = ({ children }: any) => {
   const [user, setUser] = useState<IUser | null>(null);
   const [token, setToken] = useState(localStorage.getItem("site") || "");
-  const [callback, setCallback] = useState<any>()
   const navigate = useNavigate();
 
-  const loginAction = async (data: { phoneNumber: string, verificationCode: string, callback: () => void }) => {
+  const loginAction = async (data: { phoneNumber: string, verificationCode: string, callback: (token : string) => void }) => {
     httpClient.post("/api/login", {
       phoneNumber: data.phoneNumber,
       verificationCode: data.verificationCode
@@ -26,20 +26,19 @@ const AuthProvider = ({ children }: any) => {
       if (res.data) {
         localStorage.setItem("site", res.data.data.token);
         setToken(res.data.data.token);
-        setCallback(data.callback)
+        console.log(res.data.data.token);
+        axios.get(process.env.REACT_APP_URL + "/api/user/profile",{
+          headers : {
+            "Authorization" : "Bearer " + res.data.data.token
+          }
+        })
+        .then(r => {
+          setUser(r.data.data);
+          data.callback(res.data.data.token);
+        })
       }
     })
   };
-
-  useEffect(() => {
-    if (token && callback) {
-      httpClient.get("/api/user/profile").then(res => {
-        setUser(res.data.data);
-        if (callback)
-          callback()
-      })
-    }
-  }, [token, callback])
 
   const logOut = () => {
     setUser(null);

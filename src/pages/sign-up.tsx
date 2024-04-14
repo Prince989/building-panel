@@ -70,11 +70,14 @@ export default function SignUp() {
             supervisorEngineer: data.supervisorEngineer,
             engineeringSystemNumber: data.engineeringSystemNumber,
             postalCode: data.postalCode,
-            floorsCount: "",
-            projectDesc: "",
-            projectLandSizeSpec: "",
-            residentalUnitCount: "",
-            businessUnitCount: ""
+            floorsCount: "0",
+            projectDesc: "Lorem Ipsum",
+            projectLandSizeSpec: "20",
+            residentalUnitCount: "54",
+            businessUnitCount: "22",
+            isActive : true,
+            projectStart : "5465464",
+            projectEnd : "3131366"
         })
 
         formData.append("roleId", "1");
@@ -202,7 +205,7 @@ export default function SignUp() {
             </div>
             {
                 openWindow &&
-                <VerificationCodeSMS phoneNumber='09194321624' signup={true} project={project} />
+                <VerificationCodeSMS phoneNumber={watch("phoneNumber")} signup={true} project={project} />
             }
         </div>
     )

@@ -36,7 +36,7 @@ function ProjectCard({ project }: { project: IProject }) {
 function ProjectAdd({ setOpen }: { setOpen: Dispatch<boolean> }) {
 
     return (
-        <div onClick={() => setOpen(true)} className='border flex items-center justify-center h-[310px] border-[#E3E3E3] w-[29%] rounded-[16px] px-[16px] pb-[8px]'>
+        <div onClick={() => setOpen(true)} className='border cursor-pointer flex items-center justify-center h-[310px] border-[#E3E3E3] w-[29%] rounded-[16px] px-[16px] pb-[8px]'>
             <div className='flex items-center text-primary font-medium gap-x-[4.44px] flex-row-reverse'>
                 <div className='flex text-white bg-primary rounded-full w-[20px] h-[20px] font-semibold leading-[15px] items-center justify-center'>
                     +
@@ -86,11 +86,14 @@ export default function Projects() {
             supervisorEngineer: data.supervisorEngineer,
             engineeringSystemNumber: data.engineeringSystemNumber,
             postalCode: data.postalCode,
-            floorsCount: "",
-            projectDesc: "",
-            projectLandSizeSpec: "",
-            residentalUnitCount: "",
-            businessUnitCount: ""
+            floorsCount: "0",
+            projectDesc: "Lorem Ipsum",
+            projectLandSizeSpec: "20",
+            residentalUnitCount: "54",
+            businessUnitCount: "22",
+            isActive : true,
+            projectStart : "5465464",
+            projectEnd : "3131366"
         }
 
         const formData = new FormData();

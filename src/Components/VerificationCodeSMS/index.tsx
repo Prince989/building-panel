@@ -7,6 +7,7 @@ import httpClient from '../../API'
 import { useNavigate } from 'react-router'
 import { useAuth } from '../../AuthContext'
 import { IProject } from '../../types'
+import axios from 'axios'
 
 export default function VerificationCodeSMS(props: { phoneNumber: string, signup: boolean, project: IProject | undefined }) {
 
@@ -40,18 +41,22 @@ export default function VerificationCodeSMS(props: { phoneNumber: string, signup
         user.loginAction({
             phoneNumber: props.phoneNumber || phoneNumber,
             verificationCode: code,
-            callback: () => {
+            callback: (token : string) => {
                 const formData = new FormData();
                 if (props.project) {
                     for (let [key, value] of Object.entries(props.project)) {
                         formData.append(key,value)
                     }
-
-                    httpClient.post("/api/projects", formData).then(res => {
+                    axios.post(process.env.REACT_APP_URL + "/api/projects", formData ,{
+                        headers : {
+                            "Authorization" : "Bearer " + token
+                        }
+                    }).then(res => {
                         navigate('/dashboard')
                     })
                 }
                 else{
+                    console.log(token);
                     navigate('/dashboard')
                 }
             }

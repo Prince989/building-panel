@@ -23,7 +23,15 @@ export default function ProfileAvatar() {
                     }
                 </h1>
                 <h2 className='text-[#000000A3] text-[14px]'>
-                    کارفرما
+                    {
+                        user?.roleId.toString() == "1" ?
+                            "کارفرما"
+                            :
+                            user?.roleId.toString() == "2" ?
+                                "پیمانکار"
+                                :
+                                ""
+                    }
                 </h2>
             </div>
 

@@ -75,12 +75,10 @@ export default function SignUp() {
             projectLandSizeSpec: "20",
             residentalUnitCount: "54",
             businessUnitCount: "22",
-            isActive : true,
-            projectStart : "5465464",
-            projectEnd : "3131366"
+            isActive: true,
+            projectStart: "5465464",
+            projectEnd: "3131366"
         })
-
-        formData.append("roleId", "1");
 
         if (file)
             formData.append("image", file)
@@ -134,8 +132,21 @@ export default function SignUp() {
                     <input type='radio' />
                     <input type='radio' />
                 </div> */}
-                <div className='p-[32px] mb-[44px] pb-[109px] w-full rounded-[14px] mt-[32px]' dir='rtl' style={{ boxShadow: "0px 15px 50px -5px #00000026" }}>
-                    <form onSubmit={handleSubmit(onSubmit)}>
+                <form onSubmit={handleSubmit(onSubmit)} dir='rtl'>
+                    <div className='ml-[6px] mt-[46px]'>
+                        نوع حساب کاربری خود را انتخاب کنید.
+                    </div>
+                    <div className='flex border-b w-full pb-[24px] gap-[8px] mt-[24px]'>
+                        <input type='radio' value="1" defaultChecked {...register("roleId", { maxLength: 30 })} name="roleId" />
+                        <label>
+                            کارفرما
+                        </label>
+                        <input type='radio' value="2" {...register("roleId", { maxLength: 30 })} name="roleId" />
+                        <label>
+                            پیمانکار
+                        </label>
+                    </div>
+                    <div className='p-[32px] mb-[44px] pb-[109px] w-full rounded-[14px] mt-[32px]' style={{ boxShadow: "0px 15px 50px -5px #00000026" }}>
                         <div className='text-primary'>
                             {
                                 watch("name")
@@ -168,7 +179,7 @@ export default function SignUp() {
                             <label>
                                 خانم
                             </label>
-                            <input type='radio' value="male" {...register("gender", { maxLength: 30 })} name="gender" />
+                            <input type='radio' defaultChecked value="male" {...register("gender", { maxLength: 30 })} name="gender" />
                             <label>
                                 آقا
                             </label>
@@ -180,9 +191,10 @@ export default function SignUp() {
                         <label htmlFor="gallery-image" className='flex p-5 cursor-pointer'>
                             <img src='/assets/image-picker.svg' />
                         </label>
-
-                        <ProjectForm register={register} />
-
+                        {
+                            watch("roleId") == "1" &&
+                            <ProjectForm register={register} />
+                        }
                         <div className='mt-[88px]'>
                             <div className='text-primary font-bold text-center'>
                                 کاربر گرامی در صورت اطمینان از صحت اطلاعات، ثبت نهایی را انجام و کد ارسال شده را وارد کنید
@@ -200,13 +212,13 @@ export default function SignUp() {
                                 </div>
                             </div>
                         </div>
-                    </form>
-                </div>
+                    </div>
+                </form>
             </div>
             {
                 openWindow &&
                 <VerificationCodeSMS phoneNumber={watch("phoneNumber")} signup={true} project={project} />
             }
-        </div>
+        </div >
     )
 }

@@ -43,10 +43,11 @@ export default function VerificationCodeSMS(props: { phoneNumber: string, signup
             verificationCode: code,
             callback: (token : string) => {
                 const formData = new FormData();
-                if (props.project) {
+                if (props.project?.projectName) {
                     for (let [key, value] of Object.entries(props.project)) {
                         formData.append(key,value)
                     }
+                    
                     axios.post(process.env.REACT_APP_URL + "/api/projects", formData ,{
                         headers : {
                             "Authorization" : "Bearer " + token

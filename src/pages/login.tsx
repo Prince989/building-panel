@@ -35,7 +35,7 @@ export default function Login() {
             </div>
             {
                 openWindow &&
-                <VerificationCodeSMS phoneNumber='' signup={false} project={undefined} />
+                <VerificationCodeSMS phoneNumber='' signup={false} project={undefined} setWindowShow={setOpenWindow} />
             }
         </div>
     )

@@ -1,6 +1,19 @@
 
 export interface IBook{}
 
+export interface IProduct{
+    id: number
+    userId: number
+    productName: string,
+    productBrand: string,
+    productDesc: string,
+    productPrice: number,
+    images: string[],
+    isActive: boolean,
+    createdAt: string
+    updatedAt: string
+}
+
 export interface IProject{
     projectName : string
     projectNumber : string

@@ -30,7 +30,10 @@ export default function ProfileAvatar() {
                             user?.roleId.toString() == "2" ?
                                 "پیمانکار"
                                 :
-                                ""
+                                user?.roleId.toString() == "3" ?
+                                    "تامین کننده"
+                                    :
+                                    ""
                     }
                 </h2>
             </div>

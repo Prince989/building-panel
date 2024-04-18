@@ -83,7 +83,6 @@ export default function SignUp() {
         if (file)
             formData.append("image", file)
         httpClient.post("/api/sign_up", formData).then(res => {
-            console.log(res.data);
             sendCode(data.phoneNumber);
         })
     }
@@ -144,6 +143,10 @@ export default function SignUp() {
                         <input type='radio' value="2" {...register("roleId", { maxLength: 30 })} name="roleId" />
                         <label>
                             پیمانکار
+                        </label>
+                        <input type='radio' value="3" {...register("roleId", { maxLength: 30 })} name="roleId" />
+                        <label>
+                            تامین کننده
                         </label>
                     </div>
                     <div className='p-[32px] mb-[44px] pb-[109px] w-full rounded-[14px] mt-[32px]' style={{ boxShadow: "0px 15px 50px -5px #00000026" }}>

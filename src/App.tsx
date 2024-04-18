@@ -5,6 +5,7 @@ import Header from './Components/Dashboard/Header';
 import DashboardMenu from './Components/Dashboard/DashboardMenu';
 import { Provider } from 'react-redux';
 import { store } from './lib/store';
+import Products from './Components/Dashboard/ProviderPanel/Products';
 import Projects from './Components/Dashboard/EmployerPanel/Projects';
 import ContactorProjects from './Components/Dashboard/ContactorPanel/Projects';
 import { useAuth } from './AuthContext';
@@ -20,9 +21,15 @@ function App() {
           {/* <DashboardContainer /> */}
           {
             user.user?.roleId == 1 ?
-            <Projects />
-            :
-            <ContactorProjects />
+              <Projects />
+              :
+              user.user?.roleId == 2 ?
+                <ContactorProjects />
+                :
+                user.user?.roleId == 3 ?
+                  <Products />
+                  :
+                  ""
           }
         </div>
         <DashboardMenu />

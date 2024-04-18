@@ -21,8 +21,14 @@ import HomePage from './pages/home';
 
 const PrivateRoute = () => {
   const user = useAuth();
-  if (!user.token) return <Navigate to="/auth/login" />;
-  return <Outlet />;
+
+
+  if (user.user?.id || user.token){
+    return <Outlet />
+  }
+  else{
+    return <Navigate to="/auth/login" />;
+  }
 };
 
 const root = ReactDOM.createRoot(

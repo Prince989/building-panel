@@ -27,6 +27,11 @@ export default function Header() {
                         پروژه ها
                     </span>
                 </a>
+                <a href='/store'>
+                    <span className='font-semibold text-[16px]'>
+                        فروشگاه
+                    </span>
+                </a>
                 <a href='/suppliers'>
                     <span className='font-semibold text-[16px]'>
                         پیمانکاران

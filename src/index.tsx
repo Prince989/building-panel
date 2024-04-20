@@ -18,6 +18,8 @@ import Projects from './pages/projects';
 import AuthProvider, { useAuth } from './AuthContext';
 import Login from './pages/login';
 import HomePage from './pages/home';
+import Store from './pages/store';
+import Products from './pages/products';
 
 const PrivateRoute = () => {
   const user = useAuth();
@@ -63,6 +65,8 @@ root.render(
                 <Route path='/contactors' element={<Contactor />} />
                 <Route path='/projects' element={<Projects />} />
                 <Route path='/suppliers' element={<Suppliers />} />
+                <Route path='/products/:id' element={<Products />} />
+                <Route path='/store' element={<Store />} />
                 <Route element={<PrivateRoute />}>
                   <Route path='/dashboard' element={<App />} />
                 </Route>

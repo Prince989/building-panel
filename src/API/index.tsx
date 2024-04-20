@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { enqueueSnackbar } from 'notistack';
 import toast from 'react-hot-toast';
 
 console.log(process.env.REACT_APP_URL);
@@ -35,6 +36,13 @@ httpClient.interceptors.response.use(
             window.location.href = '/auth/login';
         } else {
             if (error?.response?.data) {
+                enqueueSnackbar(error.response.data.message, {
+                    variant : "error",
+                    anchorOrigin : {
+                        horizontal : "right",
+                        vertical : "bottom"
+                    }
+                })
                 Object?.keys(error?.response?.data)?.forEach((item: any, index) => {
                     if (index === 0) {
                         Object.values(error?.response?.data).forEach((item1: any, index) => {

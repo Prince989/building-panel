@@ -39,6 +39,9 @@ export default function VerificationCodeSMS(props: { phoneNumber: string, signup
         }).then(res => {
             setMode('verification');
         })
+            .catch((e) => {
+                console.log(e);
+            })
             .finally(() => setPhoneLoading(false))
     }
 
@@ -60,7 +63,11 @@ export default function VerificationCodeSMS(props: { phoneNumber: string, signup
                         }
                     }).then(res => {
                         navigate('/dashboard')
-                    }).finally(() => setLoading(false))
+                    })
+                        .catch((e) => {
+                            console.log(e);
+                        })
+                        .finally(() => setLoading(false))
                 }
                 else {
                     console.log(token);

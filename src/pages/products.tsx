@@ -84,7 +84,7 @@ export default function Products() {
                     </div>
                     <MultiTab product={product} />
                 </div>
-                <div className='relative p-10 w-full rounded-[16px] h-[483px] bg-[#F5F5F5]'>
+                <div className='relative w-[100%] rounded-[16px] bg-[#F5F5F5] h-[100%]'>
                     <Swiper
                         slidesPerView={1}
                         loop
@@ -92,12 +92,14 @@ export default function Products() {
                         // navigation
                         pagination
                         modules={[Navigation, Pagination]}
+                        className='h-[100%]'
+
                     >
                         {
                             product?.images && product?.images.map(i => (
                                 <SwiperSlide>
-                                    <div className='flex items-center justify-center'>
-                                        <img src={process.env.REACT_APP_URL + i} className='rounded-[16px]' />
+                                    <div className='flex items-center justify-center w-[100%] h-[100%]'>
+                                        <img src={process.env.REACT_APP_URL + i} className='rounded-[16px] w-[100%] h-[100%] object-cover' />
                                     </div>
                                 </SwiperSlide>
                             ))

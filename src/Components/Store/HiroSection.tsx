@@ -9,7 +9,7 @@ export default function HiroSection() {
         اینجا محل تبلیغات شماست
       </h1>
       <p className='mt-[20px] text-[29px] max-w-[542px] font-medium text-[#333333]'>
-        ici اولین پلتفرم تخصصی ، در حوزه صنعت ساختمان
+        ICI اولین پلتفرم تخصصی ، در حوزه صنعت ساختمان
       </p>
       <Button variant='contained' className='flex mt-[56px] font-medium px-[54px] gap-[12px] justify-center items-center text-[26px] py-[12px]'>
         <img src='/assets/call.svg' className='' />

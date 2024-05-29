@@ -4,7 +4,7 @@ import Button from '../Button'
 export default function HiroSection() {
   return (
     <div dir='rtl' className='h-[479px] bg-[#D2C9C0] pr-[88px] pt-[107px] w-full relative'>
-      <img src='/assets/dummy-2.png' className='absolute h-full left-0 bottom-0 z-[50]' />
+      <img src='/assets/dummy-2.png' className='absolute h-auto left-0 bottom-0 w-1/2 top-0 z-[50]' />
       <h1 className='text-[48px] font-semibold'>
         اینجا محل تبلیغات شماست
       </h1>
